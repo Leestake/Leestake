@@ -1,7 +1,7 @@
 [Unit]
-Description=Peercoin daemon
+Description=Leestake daemon
 After=network.target 
-Conflicts=peercoind-tor@%i.service
+Conflicts=Leestaked-tor@%i.service
 
 [Service]
 User=%i
@@ -9,7 +9,7 @@ Group=users
 Type=forking
 Restart=always
 RestartSec=15
-ExecStart=/usr/bin/peercoind -daemon
+ExecStart=/usr/bin/Leestaked -daemon
 TimeoutStopSec=60s
 TimeoutStartSec=2s
 

@@ -1,10 +1,10 @@
 src/*.exe
-src/ppcoin
-src/peercoin
-src/ppcoind
-src/peercoind
-src/test_ppcoin
-src/test_peercoin
+src/LEESoin
+src/Leestake
+src/LEESoind
+src/Leestaked
+src/test_LEESoin
+src/test_Leestake
 .*.swp
 *.*~*
 *.bak
@@ -12,23 +12,23 @@ src/test_peercoin
 *.orig
 *.o
 *.patch
-.ppcoin
-.peercoin
+.LEESoin
+.Leestake
 
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-ppcoin-qt
-peercoin-qt
-PPCoin-Qt.app
-Peercoin-Qt.app
+LEESoin-qt
+Leestake-qt
+LEESoin-Qt.app
+Leestake-Qt.app
 .qmake.stash
-peercoin-qt_plugin_import.cpp
+Leestake-qt_plugin_import.cpp
 
 # Unit-tests
 Makefile.test
-ppcoin-qt_test
-peercoin-qt_test
+LEESoin-qt_test
+Leestake-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -46,4 +46,4 @@ release/
 *.Release
 
 !src/leveldb-*/Makefile
-peercoin-qt
+Leestake-qt

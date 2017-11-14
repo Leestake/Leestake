@@ -1,6 +1,6 @@
 [Protocol]
-exec=peercoin-qt '%u'
-protocol=peercoin
+exec=Leestake-qt '%u'
+protocol=Leestake
 input=none
 output=none
 helper=true

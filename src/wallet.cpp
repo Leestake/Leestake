@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2017 The Peercoin developers
+// Copyright (c) 2011-2017 The Leestake developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -90,7 +90,7 @@ bool CWallet::AddCScript(const CScript& redeemScript)
     return CWalletDB(strWalletFile).WriteCScript(Hash160(redeemScript), redeemScript);
 }
 
-// ppcoin: optional setting to unlock wallet for block minting only;
+// LEESoin: optional setting to unlock wallet for block minting only;
 //         serves to disable the trivial sendmoney when OS account compromised
 bool fWalletUnlockMintOnly = false;
 
@@ -358,7 +358,7 @@ void CWallet::WalletUpdateSpent(const CTransaction &tx)
                     printf("WalletUpdateSpent: bad wtx %s\n", wtx.GetHash().ToString().c_str());
                 else if (!wtx.IsSpent(txin.prevout.n) && IsMine(wtx.vout[txin.prevout.n]))
                 {
-                    printf("WalletUpdateSpent found spent coin %sppc %s\n", FormatMoney(wtx.GetCredit()).c_str(), wtx.GetHash().ToString().c_str());
+                    printf("WalletUpdateSpent found spent coin %sLEES %s\n", FormatMoney(wtx.GetCredit()).c_str(), wtx.GetHash().ToString().c_str());
                     wtx.MarkSpent(txin.prevout.n);
                     wtx.WriteToDisk();
                     NotifyTransactionChanged(this, txin.prevout.hash, CT_UPDATED);
@@ -600,7 +600,7 @@ int64 CWalletTx::GetTxTime() const
     //int64 n = nTimeSmart;
     //return n ? n : nTimeReceived;
 
-    //ppcoin: we still have the timestamp, so use it to avoid confusion
+    //LEESoin: we still have the timestamp, so use it to avoid confusion
     return nTime;
 }
 
@@ -835,7 +835,7 @@ void CWallet::ReacceptWalletTransactions()
                 }
                 if (fUpdated)
                 {
-                    printf("ReacceptWalletTransactions found spent coin %sppc %s\n", FormatMoney(wtx.GetCredit()).c_str(), wtx.GetHash().ToString().c_str());
+                    printf("ReacceptWalletTransactions found spent coin %sLEES %s\n", FormatMoney(wtx.GetCredit()).c_str(), wtx.GetHash().ToString().c_str());
                     wtx.MarkDirty();
                     wtx.WriteToDisk();
                 }
@@ -963,7 +963,7 @@ int64 CWallet::GetUnconfirmedBalance() const
     return nTotal;
 }
 
-// ppcoin: total coins staked (non-spendable until maturity)
+// LEESoin: total coins staked (non-spendable until maturity)
 int64 CWallet::GetStake() const
 {
     int64 nTotal = 0;
@@ -1009,7 +1009,7 @@ void CWallet::AvailableCoins(std::vector<COutput>& vCoins, unsigned int nSpendTi
                 continue;
 
             if (pcoin->nTime > nSpendTime)
-                continue;  // ppcoin: timestamp must not exceed spend time
+                continue;  // LEESoin: timestamp must not exceed spend time
 
             if ((pcoin->IsCoinBase() || pcoin->IsCoinStake()) && pcoin->GetBlocksToMaturity() > 0)
                 continue;
@@ -1272,7 +1272,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend,
                     nFeeRet += nMoveToFee;
                 }
 
-                // ppcoin: sub-cent change is moved to fee
+                // LEESoin: sub-cent change is moved to fee
                 if (nChange > 0 && nChange < MIN_TXOUT_AMOUNT)
                 {
                     nFeeRet += nChange;
@@ -1284,7 +1284,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend,
                     // coin control: send change to custom address
                     if (coinControl && !boost::get<CNoDestination>(&coinControl->destChange))
                         scriptChange.SetDestination(coinControl->destChange);
-                    else if (!GetBoolArg("-avatar")) // ppcoin: not avatar mode; nu: avatar mode enabled by default only on Share wallet to avoid change being sent to hidden address
+                    else if (!GetBoolArg("-avatar")) // LEESoin: not avatar mode; nu: avatar mode enabled by default only on Share wallet to avoid change being sent to hidden address
                     {
                         // Note: We use a new key here to keep it from being obvious which side is the change.
                         //  The drawback is that by not reusing a previous key, the change may be lost if a
@@ -1372,7 +1372,7 @@ bool CWallet::CreateTransaction(CScript scriptPubKey, int64 nValue,
     return CreateTransaction(vecSend, wtxNew, reservekey, nFeeRet, strFailReason, coinControl);
 }
 
-// ppcoin: create coin stake transaction
+// LEESoin: create coin stake transaction
 bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64 nSearchInterval, CTransaction& txNew)
 {
     // The following split & combine thresholds are important to security
@@ -1958,8 +1958,8 @@ int64 CWallet::GetOldestKeyPoolTime()
     return keypool.nTime;
 }
 
-// ppcoin: check 'spent' consistency between wallet and txindex
-// ppcoin: fix wallet spent state according to txindex
+// LEESoin: check 'spent' consistency between wallet and txindex
+// LEESoin: fix wallet spent state according to txindex
 void CWallet::FixSpentCoins(int& nMismatchFound, int64& nBalanceInQuestion, bool fCheckOnly)
 {
     nMismatchFound = 0;
@@ -1982,7 +1982,7 @@ void CWallet::FixSpentCoins(int& nMismatchFound, int64& nBalanceInQuestion, bool
         {
             if (IsMine(pcoin->vout[n]) && pcoin->IsSpent(n) && coins.IsAvailable(n))
             {
-                printf("FixSpentCoins found lost coin %sppc %s[%d], %s\n",
+                printf("FixSpentCoins found lost coin %sLEES %s[%d], %s\n",
                     FormatMoney(pcoin->vout[n].nValue).c_str(), pcoin->GetHash().ToString().c_str(), n, fCheckOnly? "repair not attempted" : "repairing");
                 nMismatchFound++;
                 nBalanceInQuestion += pcoin->vout[n].nValue;
@@ -1994,7 +1994,7 @@ void CWallet::FixSpentCoins(int& nMismatchFound, int64& nBalanceInQuestion, bool
             }
             else if (IsMine(pcoin->vout[n]) && !pcoin->IsSpent(n) && !coins.IsAvailable(n))
             {
-                printf("FixSpentCoins found spent coin %sppc %s[%d], %s\n",
+                printf("FixSpentCoins found spent coin %sLEES %s[%d], %s\n",
                     FormatMoney(pcoin->vout[n].nValue).c_str(), pcoin->GetHash().ToString().c_str(), n, fCheckOnly? "repair not attempted" : "repairing");
                 nMismatchFound++;
                 nBalanceInQuestion += pcoin->vout[n].nValue;
@@ -2008,7 +2008,7 @@ void CWallet::FixSpentCoins(int& nMismatchFound, int64& nBalanceInQuestion, bool
     }
 }
 
-// ppcoin: disable transaction (only for coinstake)
+// LEESoin: disable transaction (only for coinstake)
 void CWallet::DisableTransaction(const CTransaction &tx)
 {
     if (!tx.IsCoinStake() || !IsFromMe(tx))

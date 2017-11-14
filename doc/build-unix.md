@@ -5,7 +5,7 @@ file COPYING or http://www.opensource.org/licenses/mit-license.php.
 This product includes software developed by the OpenSSL Project for use in the [OpenSSL Toolkit](http://www.openssl.org/). This product includes
 cryptographic software written by Eric Young ([eay@cryptsoft.com](mailto:eay@cryptsoft.com)), and UPnP software written by Thomas Bernard.
 
-UNIX BUILD NOTES FOR PEERCOIN
+UNIX BUILD NOTES FOR Leestake
 ====================
 
 To Build in Terminal on Debian based Linux
@@ -13,12 +13,12 @@ To Build in Terminal on Debian based Linux
 
 	sudo apt-get -y install build-essential libqt4-dev qt5-qmake cmake qttools5-dev libqt5webkit5-dev qttools5-dev-tools qt5-default python-sphinx texlive-latex-base inotify-tools libboost-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev openssl libssl-dev libdb++-dev libminiupnpc-dev git sqlite3 libsqlite3-dev g++ libpng-dev	
 	sudo apt-get -y update && sudo apt-get -y upgrade
-	mkdir -p ~/.peercoin
-	echo "rpcuser=username" >>~/.peercoin/peercoin.conf
-	echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >>~/.peercoin/peercoin.conf
-	git clone https://github.com/peercoin/peercoin
-	cd peercoin
-	git checkout v0.6.0ppc
+	mkdir -p ~/.Leestake
+	echo "rpcuser=username" >>~/.Leestake/Leestake.conf
+	echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >>~/.Leestake/Leestake.conf
+	git clone https://github.com/Leestake/Leestake
+	cd Leestake
+	git checkout v0.6.0LEES
 	qmake -qt=qt5 && make
 
 
@@ -99,21 +99,21 @@ Optional:
 Dependency Build Instructions: Gentoo
 -------------------------------------
 
-Note: Currently, there is no peercoin ebuild available in overlay 
+Note: Currently, there is no Leestake ebuild available in overlay 
 
 	emerge -av1 --noreplace dev-libs/boost dev-libs/glib dev-libs/openssl sys-libs/db:4.8
 
 Note: If you like to have UPnP support, you need to install net-libs/miniupnpc.
  
 Take the following steps to build (no UPnP support):
-	cd ${PEERCOIN_DIR}/src
+	cd ${Leestake_DIR}/src
 	make -f makefile.unix USE_UPNP= USE_IPV6=1 BDB_INCLUDE_PATH='/usr/include/db4.8'
-	strip peercoind
+	strip Leestaked
 
 
 Notes
 -----
-The release is built with GCC and then "strip peercoind" to strip the debug
+The release is built with GCC and then "strip Leestaked" to strip the debug
 symbols, which reduces the executable size by about 90%.
 
 

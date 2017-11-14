@@ -1,5 +1,5 @@
 # Copyright (c) 2009-2010 Satoshi Nakamoto
-# Copyright (c) 2011-2017 The Peercoin developers
+# Copyright (c) 2011-2017 The Leestake developers
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -150,10 +150,10 @@ OBJS= \
     obj/txdb.o
 
 
-all: peercoind
+all: Leestaked
 
-test check: test_peercoin FORCE
-	./test_peercoin
+test check: test_Leestake FORCE
+	./test_Leestake
 
 #
 # LevelDB support
@@ -181,9 +181,9 @@ obj/%.o: %.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-peercoind: $(OBJS:obj/%=obj/%)
+Leestaked: $(OBJS:obj/%=obj/%)
 	$(LINK) $(xCXXFLAGS) -o $@ $^ $(xLDFLAGS) $(LIBS)
-	@cp $@ ppcoind
+	@cp $@ LEESoind
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 
@@ -194,12 +194,12 @@ obj-test/%.o: test/%.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-test_peercoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_Leestake: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(LINK) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ $(TESTLIBS) $(xLDFLAGS) $(LIBS)
 
 clean:
-	-rm -f peercoind test_peercoin
-	-rm -f ppcoind
+	-rm -f Leestaked test_Leestake
+	-rm -f LEESoind
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P

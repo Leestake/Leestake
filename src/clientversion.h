@@ -14,11 +14,11 @@
 // Set to true for release, false for prerelease or test build
 #define CLIENT_VERSION_IS_RELEASE  true
 
-// ppcoin version - intended for display purpose ONLY
-#define PEERCOIN_VERSION_MAJOR       0
-#define PEERCOIN_VERSION_MINOR       6
-#define PEERCOIN_VERSION_REVISION    1
-#define PEERCOIN_VERSION_BUILD       0
+// LEESoin version - intended for display purpose ONLY
+#define Leestake_VERSION_MAJOR       0
+#define Leestake_VERSION_MINOR       6
+#define Leestake_VERSION_REVISION    1
+#define Leestake_VERSION_BUILD       0
 
 // Copyright year (2009-this)
 // Todo: update this when changing our copyright comments in the source

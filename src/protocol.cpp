@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2017 The Peercoin developers
+// Copyright (c) 2011-2017 The Leestake developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -23,9 +23,9 @@ static unsigned char pchMessageStartTestOld[4] = { 0xdc, 0xeb, 0xf2, 0xf6 };
 static unsigned char pchMessageStartTestNew[4] = { 0xc1, 0xf1, 0xc0, 0xef };
 static unsigned int nMessageStartTestSwitchTime = 1346200000;
 
-// Peercoin message start (switch from Bitcoin's in v0.2)
+// Leestake message start (switch from Bitcoin's in v0.2)
 static unsigned char pchMessageStartBitcoin[4] = { 0xb9, 0xe4, 0xb5, 0xd4 };
-static unsigned char pchMessageStartPeercoin[4] = { 0xb8, 0xe4, 0xe5, 0xe9 };
+static unsigned char pchMessageStartLeestake[4] = { 0xb8, 0xe4, 0xe5, 0xe9 };
 static unsigned int nMessageStartSwitchTime = 1347300000;
 
 unsigned char pchMessageStart[4] = { 0xe4, 0xe9, 0xe8, 0xe4 };
@@ -35,7 +35,7 @@ void GetMessageStart(unsigned char pchMessageStart[], bool fPersistent)
     if (fTestNet)
         memcpy(pchMessageStart, (fPersistent || GetAdjustedTime() > nMessageStartTestSwitchTime)? pchMessageStartTestNew : pchMessageStartTestOld, sizeof(pchMessageStartTestNew));
     else
-        memcpy(pchMessageStart, (fPersistent || GetAdjustedTime() > nMessageStartSwitchTime)? pchMessageStartPeercoin : pchMessageStartBitcoin, sizeof(pchMessageStartPeercoin));
+        memcpy(pchMessageStart, (fPersistent || GetAdjustedTime() > nMessageStartSwitchTime)? pchMessageStartLeestake : pchMessageStartBitcoin, sizeof(pchMessageStartLeestake));
 }
 
 static const char* ppszTypeName[] =

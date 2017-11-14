@@ -3,7 +3,7 @@
 <plist version="0.9">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>peercoin.icns</string>
+	<string>Leestake.icns</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
@@ -15,7 +15,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
-	<string>Peercoin-Qt</string>
+	<string>Leestake-Qt</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.bitcoinfoundation.Bitcoin-Qt</string>
         <key>CFBundleURLTypes</key>
