@@ -3214,7 +3214,7 @@ bool LoadBlockIndex()
     if (fTestNet)
     {
 #ifdef TESTING
-        hashGenesisBlock = uint256("00008d0d88095d31f6dbdbcf80f6e51f71adf2be15740301f5e05cc0f3b2d2c0");
+        hashGenesisBlock = uint256("0x");
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 15);
         nStakeMinAge = 60 * 60 * 24; // test net min age is 1 day
         nCoinbaseMaturity = 60;
@@ -3263,7 +3263,7 @@ bool InitBlockIndex() {
         //   vMerkleTree: 4a5e1e
 
         // Genesis block
-        const char* pszTimestamp = "Matonis 07-AUG-2012 Parallel Currencies And The Roadmap To Monetary Freedom";
+        const char* pszTimestamp = "Taxpayers pay legal bill to protect Trump business profits 11-15-2017";
         CTransaction txNew;
         txNew.nTime = 1345083810;
         txNew.vin.resize(1);
@@ -3302,7 +3302,7 @@ bool InitBlockIndex() {
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x3c2d8f85fab4d17aac558cc648a1a58acff0de6deb890c29985690052c5993c2"));
+        assert(block.hashMerkleRoot == uint256("0x"));
         block.print();
         assert(hash == hashGenesisBlock);
         // LEESoin: check genesis block
